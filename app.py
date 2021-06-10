@@ -43,7 +43,7 @@ st.plotly_chart(fig)
 
 
 st.write('''
-### For simplicity, all countries are divided into 3 clusters purely based on selected factors, cluster 0,1,2 corresponding to under developed, developing and developed countries respectively
+### For simplicity, purely based on selected factors, all countries are categorized into 3 clusters cluster 0,1,2 corresponding to under developed, developing and developed countries respectively
 #### cluster 0 ----> Under Developed Nations
 #### cluster 1 ----> Developing Nations
 #### cluster 2 ----> Developed Nations
@@ -99,14 +99,29 @@ clusters_table = pd.pivot_table(data[option], index=['cluster'])
 st.table(clusters_table)
 
 st.write('''
-## Visual represenation of Clusters
-Every country belongs to one of the three clusters
+## Visual representation of Clusters 
+Each country belongs to one of the three clusters
 ''')
 
 fig = px.scatter_matrix(data[option],
     dimensions=option,
     color="cluster",height= 800, width = 1100)
 st.plotly_chart(fig)
+
+
+st.write('''
+## Visualising clusters on World Map
+''')
+
+st.image('worldmap.png')
+
+st.write('''
+### Findings from Cluster Analysis
+Countries in Cluster 2 (characterised by showing really strong or positive values such as good economic development, high life expectancy, low child mortality) are located in North America, Europe, Oceania and a couple in Asia.
+Countries in Cluster 1 (characterised by having the most negative values: high child mortality, lowest economic development) are located across Africa and Asia.
+Countries in Cluster 0 (characterised by showing average values for all features when comparing with other clusters) are located across South America, parts of Africa, Europe and Asia.
+Blank spaces (like Mexico) are of countries with no available data.
+''')
 
 
 col1, col2, col3 = st.beta_columns(3)
